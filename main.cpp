@@ -75,10 +75,10 @@ int main()
 
             for (int j = 1; j < extWeight - 1; j++)
             {
-                double left = pow(saturate_cast<int>(data[j]) - saturate_cast<int>(data[j - 1]), 2);
-                double right = pow(saturate_cast<int>(data[j]) - saturate_cast<int>(data[j + 1]), 2);
-                double down = pow(saturate_cast<int>(data[j]) - saturate_cast<int>(dataDown[j]), 2);
-                double top = pow(saturate_cast<int>(data[j]) - saturate_cast<int>(dataTop[j]), 2);
+                double left = pow(saturate_cast<int>(data[j] - data[j - 1]), 2);
+                double right = pow(saturate_cast<int>(data[j] - data[j + 1]), 2);
+                double down = pow(saturate_cast<int>(data[j] - dataDown[j]), 2);
+                double top = pow(saturate_cast<int>(data[j] - dataTop[j]), 2);
                 pingFangHe += left + right + down + top;
             }
         }
