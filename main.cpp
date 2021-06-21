@@ -12,17 +12,17 @@ int main()
     while(input != "q")
     {
         string imageNum;
-        cout << "ÊäÈëÍ¼Æ¬±àºÅ: ";
+        cout << "è¾“å…¥å›¾ç‰‡ç¼–å·: ";
         cin >> imageNum;
         stringstream  ss;
-        ss << "D:\\ÊÐÖ¾Êý¾Ý\\¶«Î÷ºþÇøÖ¾£¨ÉÏ¾í£©-RH\\visualized\\" << imageNum << ".visualized.jpg";
+        ss << "D:\\å¸‚å¿—æ•°æ®\\ä¸œè¥¿æ¹–åŒºå¿—ï¼ˆä¸Šå·ï¼‰-RH\\visualized\\" << imageNum << ".visualized.jpg";
         cout << ss.str() << endl;
 
         Mat srcImage, srcImageRez;
         srcImage = imread(ss.str());
         if (srcImage.empty())
         {
-            cout << "¶ÁÈ¡´íÎó" << endl;
+            cout << "è¯»å–é”™è¯¯" << endl;
             return -1;
         }
 
@@ -42,7 +42,7 @@ int main()
         double extHeight = srcImageGrayExt.rows;
         double extWeight = srcImageGrayExt.cols;
 
-        /*----»ñÈ¡Êý×éÔªËØÀàÐÍ----------*/
+        /*----èŽ·å–æ•°ç»„å…ƒç´ ç±»åž‹----------*/
         //int extType = srcImageGrayExt.type();
         //cout << "type:" << extType << endl;
 
@@ -53,20 +53,20 @@ int main()
         double pingFangHe = 0.0;
         double duiBiDu;
 
-/*----------------Ö±½Ó·ÃÎÊÃ¿¸öÏñËØµÄÖµ¼ÆËã¶Ô±È¶È--------------*/
+/*----------------ç›´æŽ¥è®¿é—®æ¯ä¸ªåƒç´ çš„å€¼è®¡ç®—å¯¹æ¯”åº¦--------------*/
 //       for (int i = 1; i < extHeight - 1; i++)
 //        {
 //            for (int j = 1; j < extWeight - 1; j++)
 //            {
-//                double left = pow(saturate_cast<int>(srcImageGrayExt.at<uchar>(i, j)) - saturate_cast<int>(srcImageGrayExt.at<uchar>(i, j - 1)), 2);
-//                double right = pow(saturate_cast<int>(srcImageGrayExt.at<uchar>(i, j)) - saturate_cast<int>(srcImageGrayExt.at<uchar>(i, j + 1)), 2);
-//                double down = pow(saturate_cast<int>(srcImageGrayExt.at<uchar>(i, j)) - saturate_cast<int>(srcImageGrayExt.at<uchar>(i - 1, j)), 2);
-//                double top = pow(saturate_cast<int>(srcImageGrayExt.at<uchar>(i, j)) - saturate_cast<int>(srcImageGrayExt.at<uchar>(i + 1, j)), 2);
+//                double left = pow(saturate_cast<int>(srcImageGrayExt.at<uchar>(i, j) - srcImageGrayExt.at<uchar>(i, j - 1)), 2);
+//                double right = pow(saturate_cast<int>(srcImageGrayExt.at<uchar>(i, j) - srcImageGrayExt.at<uchar>(i, j + 1)), 2);
+//                double down = pow(saturate_cast<int>(srcImageGrayExt.at<uchar>(i, j) - srcImageGrayExt.at<uchar>(i - 1, j)), 2);
+//                double top = pow(saturate_cast<int>(srcImageGrayExt.at<uchar>(i, j) - srcImageGrayExt.at<uchar>(i + 1, j)), 2);
 //                pingFangHe += left + right + down + top;
 //            }
 //        }
 
-/*-------------------Ê¹ÓÃÖ¸Õë·¨¼ÆËã¶Ô±È¶È------------------*/
+/*-------------------ä½¿ç”¨æŒ‡é’ˆæ³•è®¡ç®—å¯¹æ¯”åº¦------------------*/
        for (int i = 1; i < extHeight - 1; i++)
         {
             auto* dataTop = srcImageGrayExt.ptr<uchar>(i - 1);
@@ -85,9 +85,9 @@ int main()
 
         duiBiDu = pingFangHe / (4 * (srcHeight - 2) * (srcWeight - 2) + 2 * (srcHeight - 2) * 3 +
                                 2 * (srcWeight - 2) * 3 + 4 * 2);
-        cout << "¶Ô±È¶È£º" << duiBiDu << endl;
+        cout << "å¯¹æ¯”åº¦ï¼š" << duiBiDu << endl;
 
-        cout <<"ÊäÈëq½áÊø£¬ÊäÈëÆäËû¼ÌÐø: ";
+        cout <<"è¾“å…¥qç»“æŸï¼Œè¾“å…¥å…¶ä»–ç»§ç»­: ";
         cin >> input;
 
     }
