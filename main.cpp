@@ -12,17 +12,17 @@ int main()
     while(input != "q")
     {
         string imageNum;
-        cout << "è¾“å…¥å›¾ç‰‡ç¼–å·: ";
+        cout << "ÊäÈëÍ¼Æ¬±àºÅ: ";
         cin >> imageNum;
         stringstream  ss;
-        ss << "D:\\å¸‚å¿—æ•°æ®\\ä¸œè¥¿æ¹–åŒºå¿—ï¼ˆä¸Šå·ï¼‰-RH\\visualized\\" << imageNum << ".visualized.jpg";
+        ss << "D:\\ÊÐÖ¾Êý¾Ý\\¶«Î÷ºþÇøÖ¾£¨ÉÏ¾í£©-RH\\visualized\\" << imageNum << ".visualized.jpg";
         cout << ss.str() << endl;
 
         Mat srcImage, srcImageRez;
         srcImage = imread(ss.str());
         if (srcImage.empty())
         {
-            cout << "è¯»å–é”™è¯¯" << endl;
+            cout << "¶ÁÈ¡´íÎó" << endl;
             return -1;
         }
 
@@ -42,7 +42,7 @@ int main()
         double extHeight = srcImageGrayExt.rows;
         double extWeight = srcImageGrayExt.cols;
 
-        /*----èŽ·å–æ•°ç»„å…ƒç´ ç±»åž‹----------*/
+        /*----»ñÈ¡Êý×éÔªËØÀàÐÍ----------*/
         //int extType = srcImageGrayExt.type();
         //cout << "type:" << extType << endl;
 
@@ -53,7 +53,7 @@ int main()
         double pingFangHe = 0.0;
         double duiBiDu;
 
-/*----------------ç›´æŽ¥è®¿é—®æ¯ä¸ªåƒç´ çš„å€¼è®¡ç®—å¯¹æ¯”åº¦--------------*/
+/*----------------Ö±½Ó·ÃÎÊÃ¿¸öÏñËØµÄÖµ¼ÆËã¶Ô±È¶È--------------*/
 //       for (int i = 1; i < extHeight - 1; i++)
 //        {
 //            for (int j = 1; j < extWeight - 1; j++)
@@ -65,8 +65,10 @@ int main()
 //                pingFangHe += left + right + down + top;
 //            }
 //        }
+//        duiBiDu = pingFangHe / (4 * (srcHeight - 2) * (srcWeight - 2) + 2 * (srcHeight - 2) * 3 +
+//                                2 * (srcWeight - 2) * 3 + 4 * 2);
 
-/*-------------------ä½¿ç”¨æŒ‡é’ˆæ³•è®¡ç®—å¯¹æ¯”åº¦------------------*/
+/*-------------------Ê¹ÓÃÖ¸Õë·¨¼ÆËã¶Ô±È¶È------------------*/
        for (int i = 1; i < extHeight - 1; i++)
         {
             auto* dataTop = srcImageGrayExt.ptr<uchar>(i - 1);
@@ -82,12 +84,13 @@ int main()
                 pingFangHe += left + right + down + top;
             }
         }
-
         duiBiDu = pingFangHe / (4 * (srcHeight - 2) * (srcWeight - 2) + 2 * (srcHeight - 2) * 3 +
                                 2 * (srcWeight - 2) * 3 + 4 * 2);
-        cout << "å¯¹æ¯”åº¦ï¼š" << duiBiDu << endl;
 
-        cout <<"è¾“å…¥qç»“æŸï¼Œè¾“å…¥å…¶ä»–ç»§ç»­: ";
+
+        cout << "¶Ô±È¶È£º" << duiBiDu << endl;
+
+        cout <<"ÊäÈëq½áÊø£¬ÊäÈëÆäËû¼ÌÐø: ";
         cin >> input;
 
     }
